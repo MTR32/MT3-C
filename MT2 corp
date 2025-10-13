@@ -1,0 +1,414 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT2 Cooperation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212; /* Matte black */
+            color: #FFFFFF; /* White */
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header */
+        header {
+            background-color: #000000; /* Matte black */
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333333; /* Dark gray */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #A9A9A9; /* Gray */
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #121212;
+            text-align: center;
+            padding: 180px 2rem 120px;
+            border-bottom: 1px solid #333333;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #FFFFFF;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #A9A9A9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background-color: #333333;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #555555;
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .content-text {
+            color: #A9A9A9;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .chart-container {
+            background-color: #000000;
+            padding: 2.5rem;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            margin: 0 auto;
+            max-width: 900px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Advice Section */
+        .advice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .advice-card {
+            background-color: #000000;
+            padding: 2rem;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .advice-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .advice-card h3 {
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .advice-card p {
+            color: #A9A9A9;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background-color: #000000;
+            border: 1px solid #333333;
+            color: #FFFFFF;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #A9A9A9;
+        }
+
+        button {
+            background-color: #333333;
+            color: #FFFFFF;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #555555;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid #333333;
+            color: #A9A9A9;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 80px 1rem;
+            }
+
+            .chart-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">MT2</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#growth">Growth</a></li>
+                <li><a href="#investments">Investments</a></li>
+                <li><a href="#advice">Advice</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Welcome to MT2 Cooperation</h1>
+        <p>Join us in forging meaningful partnerships that drive innovation and mutual success in a dynamic world.</p>
+        <a href="#contact" class="cta-button">Get in Touch</a>
+    </section>
+
+    <section id="about">
+        <h2>About MT2</h2>
+        <p class="content-text">MT2 Cooperation is dedicated to building strategic alliances that foster sustainable growth. With a focus on collaboration, we connect corporations with opportunities that align with their vision and values.</p>
+    </section>
+
+    <section id="growth">
+        <h2>Tracking Our Growth</h2>
+        <p class="content-text">Witness the steady ascent of MT2 through our revenue growth chart, reflecting our commitment to excellence and partnership-driven progress.</p>
+        <div class="chart-container">
+            <canvas id="growthChart"></canvas>
+        </div>
+    </section>
+
+    <section id="investments">
+        <h2>Areas of Investment</h2>
+        <p class="content-text">Explore potential investment sectors where MT2 facilitates corporate engagement, ensuring diversified and impactful opportunities.</p>
+        <div class="chart-container">
+            <canvas id="investmentPieChart"></canvas>
+        </div>
+    </section>
+
+    <section id="advice">
+        <h2>Investment Advice</h2>
+        <p class="content-text">At MT2, we believe in informed decision-making. Here are some key insights to guide your investment journey:</p>
+        <div class="advice-grid">
+            <div class="advice-card">
+                <h3>Diversify Your Portfolio</h3>
+                <p>Spread investments across sectors like technology and renewable energy to mitigate risks and capture emerging opportunities.</p>
+            </div>
+            <div class="advice-card">
+                <h3>Focus on Sustainability</h3>
+                <p>Prioritize investments in green technologies and ethical practices for long-term value and positive societal impact.</p>
+            </div>
+            <div class="advice-card">
+                <h3>Conduct Thorough Research</h3>
+                <p>Analyze market trends, financial health, and partnership potential before committing resources.</p>
+            </div>
+            <div class="advice-card">
+                <h3>Build Strategic Alliances</h3>
+                <p>Collaborate with trusted partners like MT2 to unlock synergies and accelerate growth.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p class="content-text">We're here to discuss opportunities. Fill out the form below to start a conversation directly via email.</p>
+        <form class="contact-form" id="contactForm" action="mailto:marxty27@gmail.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 MT2 Cooperation. All rights reserved. | Official Email: marxty27@gmail.com</p>
+    </footer>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Growth Line Chart
+        const growthCtx = document.getElementById('growthChart').getContext('2d');
+        const growthChart = new Chart(growthCtx, {
+            type: 'line',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Revenue Growth (in millions)',
+                    data: [5, 12, 20, 35, 50],
+                    borderColor: '#A9A9A9', // Gray
+                    backgroundColor: 'rgba(169, 169, 169, 0.2)', // Semi-transparent gray
+                    borderWidth: 2,
+                    tension: 0.4 // Smoother curve for inviting feel
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#333333' },
+                        ticks: { color: '#A9A9A9' }
+                    },
+                    x: {
+                        grid: { color: '#333333' },
+                        ticks: { color: '#A9A9A9' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#FFFFFF' } }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+
+        // Investment Pie Chart
+        const pieCtx = document.getElementById('investmentPieChart').getContext('2d');
+        const investmentPieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Technology', 'Renewable Energy', 'Healthcare', 'Real Estate', 'Education'],
+                datasets: [{
+                    data: [30, 25, 20, 15, 10],
+                    backgroundColor: [
+                        '#333333', // Dark gray
+                        '#555555', // Medium gray
+                        '#A9A9A9', // Light gray
+                        '#121212', // Matte black
+                        '#000000'  // Black
+                    ],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { color: '#FFFFFF' }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+```
